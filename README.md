@@ -58,6 +58,7 @@ then(function(res) {
 
 通过request.setHookFunction 设置hook function
 如果有返回值,返回值为请求的返回数据
+hook可以作为debug时的测试数据
 
 举个荔枝:
 ```

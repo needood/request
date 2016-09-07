@@ -9,6 +9,7 @@ var uglify = require('gulp-uglify');
 var buffer = require('vinyl-buffer');
 
 var gutil = require('gulp-util');
+var size = require('gulp-size');
 
 gulp.task('default', function() {
     var b = browserify({
@@ -25,5 +26,6 @@ gulp.task('default', function() {
         .pipe(uglify())
         .on('error', gutil.log)
         .pipe(sourcemaps.write('./'))
+        .pipe(size({showFiles:true}))
         .pipe(gulp.dest('./dist'));
 });

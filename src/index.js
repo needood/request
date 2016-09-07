@@ -17,6 +17,17 @@ function reqwestWrap(data, opt) {
         fake: false,
         fakeData: {}
     };
+    request.setHandle = function(successFn,failFn,alwaysFn){
+        if(typeof successFn ==="function"){
+            request._successHandle.push(successFn);
+        }
+        if(typeof failFn ==="function"){
+            request._failHandle.push(failFn);
+        }
+        if(typeof alwaysFn ==="function"){
+            request._handle.push(alwaysFn);
+        }
+    };
     var promise;
 
     function mid(fn) {

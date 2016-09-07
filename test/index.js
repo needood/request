@@ -6,9 +6,16 @@ request({
     cache: true
 }).then(function(res) {
     console.log(1,res);
+}).fail(function(err,msg){
+    console.log(err,msg,err.status);
+
 });
-request.setHookFunction("ooo",function(data){
+request.setHookFunction("ooo",function(data,setHandle){
     console.log("debug");
+    setHandle(null,null,function(resp){
+        console.log("response debug",resp);
+        return resp;
+    });
     return {msg:"hoooook"};
 });
 request({

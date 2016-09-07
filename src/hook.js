@@ -2,9 +2,9 @@ var hookMap = {};
 
 
 
-function getCache(key,data) {
+function getCache(key,data,fn) {
     if(hookMap[key]){
-        return hookMap[key](data);
+        return hookMap[key](data,fn);
     }
 }
 
@@ -26,14 +26,14 @@ module.exports = {
     mid:function reqwestWrap(req) {
         var resp, data = req.data;
         if (req.hook) {
-            resp = getCache(req.hook,data);
+            resp = getCache(req.hook,data,req.setHandle);
             if (resp) {
                 req.fake = true;
-                req.fakeData.success = resp;
-            } else {
-                req._successHandle.push(function(resp) {
-                    return resp;
-                });
+                if(Object.prototype.toString.call(resp)=== "[object Error]"){
+                    req.fakeData.fail = resp;
+                }else{
+                    req.fakeData.success = resp;
+                }
             }
         }
     }

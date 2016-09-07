@@ -14,7 +14,7 @@ FakePromise.prototype = {
     },
     fail: function(cb) {
         if (this.fakeData.fail) {
-            cb(this.fakeData.fail, this.fakeData.fail);
+            cb(this.fakeData.fail, this.fakeData.fail.message);
         }
         return this;
     },

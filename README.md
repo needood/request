@@ -99,3 +99,11 @@ IE6/7需要引入JSON3 [JSON3](https://bestiejs.github.io/json3/)
 }());
 </script>
 ```
+
+## Browser support
+
+- IE6+
+- Chrome 1+
+- Safari 3+
+- Firefox 1+
+- Opera

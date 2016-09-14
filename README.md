@@ -54,12 +54,13 @@ then(function(res) {
 ```
 
 
-这里只说比较重要的standalone,hook,cache三个参数的意思
+这里只说比较重要的standalone,hook,cache,resend 几个参数.
 
-- `standalone` string 或者 number标识, 两个standalone值相同的请求同时发出,后者请求失败
-- `cache` cach为true时,相同的请求数据会被缓存
-- `cache` cach为function(resp){...}时,返回值为true会被缓存
+- `standalone` string 或者 number标识, 两个standalone值相同的请求同时发出,后者请求失败.
+- `cache` cach为true时,相同的请求数据会被缓存.
+- `cache` cach为function(resp){...}时,返回值为true会被缓存.
 - `hook` string标识.
+- `resend` resend为function(resp,resendFn){...resendFn()}时,当执行resend时重发请求. PS:注意配合`setTimeout`使用.
 
 通过request.setHookFunction 设置hook function
 如果有返回值,返回值为请求的返回数据

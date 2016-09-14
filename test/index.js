@@ -35,7 +35,7 @@ request({
     standalone:"test",
     cache: true
 }).block(function(req) {
-    console.log(3,req);
+    console.log(3,"block",req);
 });
 
 setTimeout(function() {
@@ -50,16 +50,21 @@ setTimeout(function() {
         console.log(4,res);
     });
 }, 500);
-setInterval(function(){
-    request({
-        url: './test3.json',
-        method: 'get'
-    }, {
-    standalone:"test",
-    cache: function(resp){
-        return resp.code===0;
-    }
-}).then(function(res) {
-        console.log(5,res);
-    });
-}, 500);
+
+
+request({
+    url: './test2.json',
+    method: 'get'
+}, {
+    standalone:"test6",
+    resend:function(resp,resend){
+        console.log(resp,resp.status);
+        if(resp.status===404){
+            setTimeout(function(){
+                resend();
+            },500);
+
+        }
+    },
+    cache: true
+});

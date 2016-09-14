@@ -9,7 +9,9 @@ request({
 }, {
     standalone:"test2",
     hook:"ooo",
-    cache: true
+    cache: function(resp){
+        return true;
+    }
 }).then(function(res) {
     console.log("success",res);
 }).fail(function (err, msg) {

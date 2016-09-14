@@ -41,6 +41,7 @@ standalone,hook,cache为附加功能参数
 
 
 then,fail,always分别是成功,失败,不论成败的 callback回调.
+block 对应 standalone 的请求失败回调.
 ```
 then(function(res) {
     console.log("success",res);
@@ -48,7 +49,8 @@ then(function(res) {
     console.log("fail",err,msg);
 }).always(function (resp) {
     console.log("always do something");
-})
+}).block(function (req) {
+    console.log("block",req);
 ```
 
 

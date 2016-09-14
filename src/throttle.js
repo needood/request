@@ -3,7 +3,7 @@ module.exports = function reqwestWrap(req) {
     var standalone = req.standalone;
     if (standalone) {
         if (map[standalone]) {
-            req.fakeData.fail = new Error("busy");
+            req.fakeData.block = req.data;
             req.fake = true;
         } else {
             map[standalone] = true;

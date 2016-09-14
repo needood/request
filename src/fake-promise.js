@@ -22,6 +22,12 @@ FakePromise.prototype = {
         this.context = cb(this.context);
         return this;
     },
+    block: function(cb){
+        if (this.fakeData.block) {
+            cb(this.fakeData.block);
+        }
+        return this;
+    },
     constructor: FakePromise
 };
 

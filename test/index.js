@@ -34,8 +34,8 @@ request({
 }, {
     standalone:"test",
     cache: true
-}).fail(function(err,msg) {
-    console.log(3,err,msg);
+}).block(function(req) {
+    console.log(3,req);
 });
 
 setTimeout(function() {

@@ -50,3 +50,16 @@ setTimeout(function() {
         console.log(4,res);
     });
 }, 500);
+setInterval(function(){
+    request({
+        url: './test3.json',
+        method: 'get'
+    }, {
+    standalone:"test",
+    cache: function(resp){
+        return resp.code===0;
+    }
+}).then(function(res) {
+        console.log(5,res);
+    });
+}, 500);

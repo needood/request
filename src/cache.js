@@ -13,7 +13,15 @@ function setCache(data, resp) {
 
 
 module.exports = function reqwestWrap(req) {
-    var resp, data = req.data;
+    var resp, data = req.data, cache = req.cache;
+    function needCache(resp){
+        if(cache === true){
+            return true;
+        }else if(typeof cache === "function"){
+            return cache(resp);
+        }
+        return false;
+    }
     if (req.cache) {
         resp = getCache(data);
         if (resp) {
@@ -21,7 +29,9 @@ module.exports = function reqwestWrap(req) {
             req.fakeData.success = resp;
         } else {
             req._successHandle.push(function(resp) {
-                setCache(data, resp);
+                if(needCache(resp)){
+                    setCache(data, resp);
+                }
                 return resp;
             });
         }

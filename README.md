@@ -58,7 +58,7 @@ then(function(res) {
 
 - `standalone` string 或者 number标识, 两个standalone值相同的请求同时发出,后者请求失败
 - `cache` cach为true时,相同的请求数据会被缓存
-- `cache` cach为funtion(resp){...}时,返回值为true会被缓存
+- `cache` cach为function(resp){...}时,返回值为true会被缓存
 - `hook` string标识.
 
 通过request.setHookFunction 设置hook function

@@ -1,6 +1,7 @@
 var FakePromise = require('./fake-promise.js');
 var reqwest = require('reqwest');
 module.exports = function(request){
+    var promise;
     if(request.fake){
         promise = new FakePromise(request);
     }else{

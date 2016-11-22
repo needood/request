@@ -29,7 +29,6 @@ function reqwestWrap(data, opt) {
             request._handle.push(alwaysFn);
         }
     };
-    var promise;
 
     function mid(fn) {
         fn(request);
